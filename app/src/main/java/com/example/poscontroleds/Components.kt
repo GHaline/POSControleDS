@@ -29,7 +29,7 @@ class Components : AppCompatActivity() {
             val dialogPagamento = DialogPOS(this)
             dialogPagamento.show()
             dialogPagamento.setTitle("Titulo")
-            dialogPagamento.setDescription("Descrição")
+            dialogPagamento.setDescription("Descrição!")
             dialogPagamento.setInputNumberEditText(TypeMask.DATA_WITH_BAR)
             dialogPagamento.setButtonNegative(
                 null, R.color.botao_negativo, R.drawable.ic_close
