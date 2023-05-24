@@ -1,0 +1,205 @@
+<resources>
+    <string name="app_name">POS Controle DS</string>
+    <string name="app_xml">
+        LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+    TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Titulo"
+        android:textColor="#000"
+        android:textSize="20sp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    TextView
+        android:id="@+id/tv_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Descrição"
+        android:textColor="#000"
+        android:textSize="20sp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+    EditText
+        android:id="@+id/et_insertText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:focusableInTouchMode="true"
+        android:maxLines="1"
+        app:layout_constraintTop_toBottomOf="@+id/tv_description" />
+
+    LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/et_insertText">
+
+        LinearLayout
+            android:id="@+id/ll_negative"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@+id/tv_description">
+
+            ImageButton
+                android:id="@+id/ib_negative"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                />
+
+            TextView
+                android:id="@+id/tv_text_negative"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"
+                android:text="Canceler"
+                android:textColor="#000"
+                android:textSize="16sp"
+                />
+        LinearLayout>
+
+        LinearLayout
+            android:id="@+id/ll_positive"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:visibility="visible"
+            app:layout_constraintTop_toBottomOf="@+id/tv_description">
+
+            ImageButton
+                android:id="@+id/ib_positive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                />
+
+            TextView
+                android:id="@+id/tv_text_positive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"
+                android:text="Confirm"
+                android:textSize="16sp"
+                android:textColor="#000"/>
+        LinearLayout>
+    LinearLayout>
+LinearLayout>
+    </string>
+
+    <string name="app_activity">
+        class DialogPagamento(context: Context) : Dialog(context) { \n
+
+  \nprivate var _title: TextView? = null\n
+       \nprivate var _description: TextView? = null\n
+       \nprivate var _tvTextPositive: TextView? = null\n
+       \nprivate var _tvTextNegative: TextView? = null\n
+        \nprivate var _llPositive: LinearLayout? = null\n
+       \nprivate var _llNegative: LinearLayout? = null\n
+       \nprivate var _etInsertText: EditText? = null\n
+        \nprivate var _ibNegative: ImageButton? = null\n
+        \nprivate var _ibPositive: ImageButton? = null\n
+
+    \noverride fun onCreate(savedInstanceState: Bundle?) {\n
+    \ncontext.setTheme(android.R.style.Theme_Material_Light_Dialog_NoActionBar)\n
+    \nsuper.onCreate(savedInstanceState)\n
+    \nsetContentView(R.layout.dialog_pagamento)\n
+    \nsetupViews() goneAllItems() }\n
+
+    \noverride fun onStart() {\n
+    \nsuper.onStart()\n
+    \nthis.window?.setLayout( LinearLayout.LayoutParams.WRAP_CONTENT,\n
+    \nLinearLayout.LayoutParams.WRAP_CONTENT )}\n
+     \n
+    \nprivate fun setupViews() {\n
+    \n_title = findViewById(R.id.tv_title)\n
+    \n_description = findViewById(R.id.tv_description)\n
+    \n_llPositive = findViewById(R.id.ll_positive)\n
+    \n_llNegative = findViewById(R.id.ll_negative)\n
+    \n_tvTextPositive = findViewById(R.id.tv_text_positive)\n
+    \n_tvTextNegative = findViewById(R.id.tv_text_negative)\n
+    \n_etInsertText = findViewById(R.id.et_insertText)\n
+    \n_ibNegative = findViewById(R.id.ib_negative)\n
+    \n_ibPositive = findViewById(R.id.ib_positive)}\n
+
+    \n private fun goneAllItems(){\n
+    \n _title?.visibility = View.GONE\n
+    \n_description?.visibility = View.GONE\n
+    \n_llPositive?.visibility = View.GONE\n
+    \n_llNegative?.visibility = View.GONE\n
+    \n_etInsertText?.visibility = View.GONE}\n
+
+    \nfun setTitle(title: String?){\n
+    \n_title?.visibility = View.VISIBLE
+        \n_title?.text = title}\n
+
+    \nfun setDescription(description: String?){\n
+    \n _description?.visibility = View.VISIBLE
+    _description?.text = description}\n
+
+    \nfun setButtonPositive(descriptionPositiveButton: String?, okListener: View.OnClickListener?)
+    {\n
+    \n_llPositive?.visibility = View.VISIBLE\n
+    \nif (descriptionPositiveButton != null)\n
+    \n _tvTextPositive?.text = descriptionPositiveButton
+    _ibPositive?.setOnClickListener(okListener)
+    }\n
+    \nfun setButtonNegative( descriptionNegativeButton: String?, cancelListener:
+    View.OnClickListener? )
+    {\n
+    \n_llNegative?.visibility = View.VISIBLE\n
+    \n if (descriptionNegativeButton != null)\n
+    \n _tvTextNegative?.text = descriptionNegativeButton
+    _ibNegative?.setOnClickListener(cancelListener)
+    }\n
+    \nfun setInputNumberEditText(typeMask: TypeMask?)
+    {\n
+    \n_etInsertText?.visibility = View.VISIBLE
+    _etInsertText?.inputType = InputType.TYPE_CLASS_NUMBER typeMask?.let \n
+    \n{ setMaskInEditText(it)}
+    }\n
+    \nfun setInputEditText(){\n
+    \n _etInsertText?.visibility = View.VISIBLE
+    }\n
+    \n fun setTimeOut(delay: Long)
+    {\n
+    \nHandler().postDelayed({
+    this.dismiss()
+    }, delay )
+    }\n
+
+    \n private fun setMaskInEditText(typeMask: TypeMask){\n
+    \nwhen (typeMask){\n
+
+    \nTypeMask.DATA_WITH_BAR -> _etInsertText?.addTextChangedListener\n
+    \n( MaskUtils.mask( _etInsertText, MaskUtils.FORMAT_HOUR2))\n
+    \nTypeMask.FORMAT_DATE_WITH_DASH -> _etInsertText?.addTextChangedListener(\n
+    \n MaskUtils.mask( _etInsertText, MaskUtils.FORMAT_DATE_WITH_DASH ))\n
+    \n TypeMask.MONETARY -> _etInsertText?.addTextChangedListene
+    \n(formatMoneyTextWatcher( _etInsertText, true )
+    ) else ->{
+    }
+    }
+    }
+    }\n
+
+</string>
+</resources>
